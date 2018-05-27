@@ -6,30 +6,143 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use borales\extensions\phoneInput\PhoneInput;
+use yii\widgets\MaskedInput;
 
-$this->title = 'Signup';
+
+$this->title = 'Реєстрація';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerCssFile(Yii::getAlias("@web").'/css/normalize.css');
+$this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
+<?php $form = ActiveForm::begin([
+        'id' => 'form-signup',
+    'options'=> ['class'=> 'form-registration'],
+    'fieldConfig' => [
+        'options' => [
+        'tag' => false,
+            ],
+        ],
+    ]); ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+    <ul class="flex-outer">
 
-                <?= $form->field($model, 'email') ?>
+        <h2>Реєстрaція:</h2>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+        <li>
+            <label for="first-name">Ім'я</label>
+            <?=   $form->field($model, 'name',['template' => '{input}']
+                )->textInput(['placeholder'=>"Ведіть ваше Ім'я"])->label(false) ?>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
+        </li>
+        <li>
+            <label for="last-name">Прізвище</label>
+            <?=   $form->field($model, 'surname',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть Ваше прізвище"])->label(false) ?>
 
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>
-</div>
+        </li>
+        <li>
+            <label for="city">Місто</label>
+            <?=   $form->field($model, 'city',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть місто де ви зараз проживаєте"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <label for="occupation">Посада</label>
+            <?=   $form->field($model, 'chair',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть Вашу посаду"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <label for="company">Компанія / організація</label>
+            <?=   $form->field($model, 'company',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть назву компанії / організації"])->label(false) ?>
+
+        </li>
+
+        <li>
+            <label for="email">Email</label>
+            <?=   $form->field($model, 'email',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть Ваш email"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <label for="password">Пароль</label>
+            <?=   $form->field($model, 'password',['template' => '{input}']
+            )->passwordInput(['placeholder'=>"Введіть Ваш пароль"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <input class="hide_checkbox" type="checkbox" id="hide_email">
+
+            <label class="hide_checkbox" for="hide_email">Приховати Email від інших користувачів</label>
+        </li>
+        <li>
+            <label for="facebook">Facebook</label>
+            <?=   $form->field($model, 'facebook',['template' => '{input}']
+            )->textInput(['placeholder'=>"Посилання на Вашу Facebook сторінку"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <label for="linkedin">LinkedIn</label>
+            <?=   $form->field($model, 'linkedin',['template' => '{input}']
+            )->textInput(['placeholder'=>"Посилання на Вашу LinkedIn сторінку"])->label(false) ?>
+
+        </li>
+
+        <li>
+            <label for="phone">Телефон</label>
+            <?=   $form->field($model, 'phone', ['template' => '{input}'])->widget(MaskedInput::className(),[
+                'name' => 'input-1',
+                'mask' => '(999) 999-9999'
+            ])?>
+
+
+        </li>
+        <li>
+            <input class="hide_checkbox" type="checkbox" id="hide_phone">
+            <label class="hide_checkbox" for="hide_phone">Приховати телефон від інших користувачів</label>
+        </li>
+        <li>
+            <label for="message">Коротко про Вас</label>
+            <?=   $form->field($model, 'bio',['template' => '{input}']
+            )->textarea(['placeholder'=>"Коротко опишіть хто ви і чим займаєтесь"])->label(false) ?>
+
+
+        </li>
+
+
+        <li>
+            <label for="program">Назва програми в ІЛМ</label>
+            <?=   $form->field($model, 'ilm_program',['template' => '{input}']
+            )->textInput(['placeholder'=>"Введіть назва програми в ІЛМ де ви навчалися"])->label(false) ?>
+
+
+        </li>
+
+        <li>
+            <label for="grad_year">Рік випуску з ІЛМ</label>
+            <?=   $form->field($model, 'ilm_year',['template' => '{input}']
+            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛМ"])->label(false) ?>
+
+        </li>
+
+        <li>
+            <?= Html::submitButton('Зареєструватись', ['name' => 'signup-button']) ?>
+
+        </li>
+    </ul>
+<?php ActiveForm::end(); ?>
+

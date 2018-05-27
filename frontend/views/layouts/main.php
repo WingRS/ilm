@@ -27,35 +27,24 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <header class="header">
-    <h1 class="logo"><a href="https://tbatsenko.github.io/ilm_database/search.html"><img src="http://management.lviv.ua/images/logo.jpg" alt="Logo"></a></h1>
+    <h1 class="logo"><a href="/"><img src="http://management.lviv.ua/images/logo.jpg" alt="Logo"></a></h1>
     <ul class="main-nav">
-        <li><a href="https://tbatsenko.github.io/ilm_database/search.html">Пошук</a></li>
-        <li><a href="https://tbatsenko.github.io/ilm_database/search_results.html">Результати пошуку</a></li>
-        <li><a href="https://tbatsenko.github.io/ilm_database/">Вхід</a></li>
-        <li><a href="https://tbatsenko.github.io/ilm_database/registration.html">Реєстрація</a></li>
+        <li><a href="/site/search">Пошук</a></li>
+        <?php if(Yii::$app->user->isGuest): ?>
+        <li><a href="/site/login">Вхід</a></li>
+        <li><a href="/site/signup">Реєстрація</a></li>
+            <?php else: ?>
+            <li><a href="/site/logout">Вихід</a></li>
+        <?php endif; ?>
     </ul>
 
 </header>
 
-<div class="wrap">
-
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
+<div class="wrapper">
         <?= $content ?>
-    </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

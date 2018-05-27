@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\User;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -45,12 +46,7 @@ class SiteController extends Controller
                     ]
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+
         ];
     }
 
@@ -162,6 +158,9 @@ class SiteController extends Controller
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
                 }
+            }else {
+
+                return var_dump(Yii::$app->request->post());
             }
         }
 
@@ -217,5 +216,13 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionSearch() {
+        if(Yii::$app->user->isGuest) {
+            $this->goHome();
+        }
+        return $this->render("search");
     }
 }

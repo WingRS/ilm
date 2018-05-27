@@ -118,3 +118,15 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.form-signin .help-block {
+    display: none;
+}
+
+.form-signin .form-group {
+    margin-bottom: 0;
+}
+.form-registration .form-control {
+    border-radius: 0;
+    height: auto;
+}
