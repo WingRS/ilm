@@ -72,24 +72,24 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     <?if($dataProvider->count>0) : ?>
     <ul class="card">
         <?php $models = $dataProvider->models; ?>
-        <?foreach ($models as $user): ?>
-            <li class="search-item">
-                <div class="search-item__image" style="background-image: url(http://placehold.it/100x100);"></div>
-                <div class="search-item__content">
-                    <p class="text--medium">
-                        <?=  $user->surname." ". $user->name ?>
+        <?php foreach ($models as $user){
+          echo   "<li class='search-item'>
+                <div class='search-item__image' style='background-image: url(http://placehold.it/100x100);'></div>
+                <div class='search-item__content'>
+                    <p class='text--medium'>
+                        ".  $user->surname." ". $user->name."
 
                     </p>
-                    <p class="text--small text--muted">
-                        <?= $user->company .", ".$user->chair ." Місто: ".  $user->city  ?>
+                    <p class='text--small text--muted'>
+                      ".$user->company .", ".$user->chair ." Місто: ".  $user->city."
                     </p>
-                    <p class="text--small "><a href="<?= $user->facebook ?>">Facebook </a> </p>
+                    <p class='text--small '><a href='". $user->facebook ."'>Facebook </a> </p>
                 </div>
-                <div class="search-item__options">
-                    <button class="button button--outline button--small">Add to PNB</>
+                <div class='search-item__options'>
+                    <button class='button button--outline button--small'>Add to PNB</>
                 </div>
-            </li>
-        <?endforeach;?>
+            </li>"; }?>
+
     </ul>
     <?else: ?>
         <div class="text--center">
