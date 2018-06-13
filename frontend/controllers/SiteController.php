@@ -229,10 +229,10 @@ class SiteController extends Controller
 
         $model = new UserSearch();
         $dataProvider = $model->search(Yii::$app->request->queryParams);
-        $model->globalSearch = Yii::$app->request->getQueryParam("globalSearch");
+//        $model->globalSearch = Yii::$app->request->getQueryParam("globalSearch");
 
         if(!$this->addHistory()) {
-
+            $model->globalSearch = $this->getValue();
         }
         return $this->render("search", [
             "model" => $model,
@@ -279,8 +279,25 @@ class SiteController extends Controller
         $history->quary =$query;
         $history->region = $query2;
         if($history ->save()) {
+
             return true;
         }
         return false;
+    }
+    private function getValue() {
+
+
+        $query = Yii::$app->request->queryString;
+        parse_str($query, $get_array);
+        if(empty($get_array["UserSearch"])) {
+            return "";
+       }
+        $query = $get_array["UserSearch"]["globalSearch"];
+        $query2 = $get_array["UserSearch"]["region"];
+
+        if(empty($query) && empty($query2)) {
+            return "";
+        }
+        return $query;
     }
 }

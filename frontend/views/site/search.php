@@ -10,7 +10,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use borales\extensions\phoneInput\PhoneInput;
 use yii\widgets\MaskedInput;
-
+$this->title = $model->globalSearch;
 
 $this->registerJsFile(Yii::getAlias("@web").'/js/search.js');
 $this->registerJsFile(Yii::getAlias("@web").'/js/include.js');
@@ -37,7 +37,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
             'action' => ['search'],
             'method' => 'get',]); ?>
         <?= $form->field($model, 'globalSearch',['template' => '{input}'
-            ])->textInput(['autofocus' => true, 'class'=>'main-input main-name', 'placeholder'=>'Пошук', 'onfocus'=>"clearText(this)",  'onblur'=>'replaceText(this)'])->label(false) ?>
+            ])->textInput(['autofocus' => true, 'class'=>'main-input main-name', 'placeholder'=>'Пошук'])->label(false) ?>
 <!--            <input type="text" class="main-input main-name" name="NAME"  value="Пошук по імені" onfocus="clearText(this)" onblur="replaceText(this)" />-->
 
 <!--            <input type="text" class="main-input main-location" name="LOCATION"  value="Пошук по місту" onfocus="clearText(this)" onblur="replaceText(this)" />-->
