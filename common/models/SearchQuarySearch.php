@@ -60,14 +60,14 @@ class SearchQuarySearch extends SearchQuary
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_at' => strtotime($this->created_at),
+            'created_at' => $this->created_at,
             'user_id' => $this->user_id,
 
         ]);
 
         $query->andFilterWhere(['like', 'quary', $this->quary])
-            ->andFilterWhere(['like', 'region', $this->region])
-            ->andFilterWhere(['like', 'created_at', strtotime($this->created_at)]);
+            ->andFilterWhere(['like', 'region', $this->region]);
+//             ->andFilterWhere(['like', 'created_at', strtotime($this->created_at)]);
 
         return $dataProvider;
     }

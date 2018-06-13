@@ -29,11 +29,12 @@ AppAsset::register($this);
 <header class="header">
     <h1 class="logo"><a href="/"><img src="http://management.lviv.ua/images/logo.jpg" alt="Logo"></a></h1>
     <ul class="main-nav">
-        <li><a href="/site/search">Пошук</a></li>
+
         <?php if(Yii::$app->user->isGuest): ?>
         <li><a href="/site/login">Вхід</a></li>
         <li><a href="/site/signup">Реєстрація</a></li>
             <?php else: ?>
+            <li><a href="/site/search">Пошук</a></li>
             <li><a href="/site/logout">Вихід</a></li>
         <?php endif; ?>
     </ul>

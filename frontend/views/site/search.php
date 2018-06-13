@@ -98,8 +98,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     else{
        echo ' <div class="text--center">
             <p class="text--small text--muted">No more results.</p>
-        </div>
-<!--        --><?php //var_dump($dataProvider) ';
+        </div> ';
      } }?>
 
 

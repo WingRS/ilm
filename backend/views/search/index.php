@@ -15,7 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= strtotime("2018-06-10") ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'created_at',
                 'label' => 'Дата',
                 'value' => 'created_at',
-                'format' => ['date', 'php:Y-m-d']
+                'format' => ['date', 'php:Y-m-d H:i:s']
             ],
 //            'created_at',
             'quary',
