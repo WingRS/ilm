@@ -10,7 +10,7 @@ $('.search-description li').click(function() {
   newTarget = newTarget.replace(/\s/g, '');
   $(".search-large").html(newTarget);
   $('.search-description').hide();
-  $('.main-input').hide();
+  // $('.main-input').hide();
   newTarget = newTarget.toLowerCase();
   $('.main-' + newTarget).show();
 });
@@ -42,3 +42,18 @@ function replaceText(thefield) {
     thefield.value = thefield.defaultValue
   }
 }
+
+var examplesButtons = document.querySelectorAll('#examples-wrapper .btn');
+for (var i = 0; i < examplesButtons.length; i++) {
+  examplesButtons[i].addEventListener('click', function (event) {
+    document.querySelector('.main-input').value = event.currentTarget.innerHTML;
+    document.querySelector('#main-submit').click();
+  })
+}
+
+$("#main-submit").on("click", function(e) {
+  e.preventDefault();
+  $(".main-location").val($(".search-large").text());
+  console.log($(".main-location").val());
+  $("form").submit();
+});

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ILM Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/search_res.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div w3-include-html="header.html"></div>
+
+
+
+    <div class="wrapper">
+
+        <!-- <div class="strip-background"></div> -->
+
+    <div class="search__container">
+
+        <h1>Пошук контаків випускників ІЛМ</h1>
+
+        <!-- <p class="description">Use jQuery to select between search fields with a button combo box
+          <br>By: <a href="https://twitter.com/freshmasterj" target="_blank">John McGarrah</a></p> -->
+
+        <div class="container my-container">
+            <div class="main-form-container">
+
+                <form id="" class="" method="post">
+
+                    <input type="text" class="main-input" value="Пошук" onfocus="clearText(this)" />
+                    <input id="main-submit" class="" type="text" value="Пошук" onclick="window.location.href='https://tbatsenko.github.io/ilm_database/search_results.html'" />
+
+                </form>
+
+            </div>
+            <!-- mobile submit -->
+            <button type="button" id="main-submit-mobile"><a href="https://tbatsenko.github.io/ilm_database/search_results.html">Пошук</a></button>
+
+        </div>
+
+        <ul class="card">
+            <li class="search-item">
+                <div class="search-item__image" style="background-image: url(http://placehold.it/100x100);"></div>
+                <div class="search-item__content">
+                    <p class="text--medium">
+                        SURNAME, Forname
+                        <span class="label label--red text--upcase">Warning</span>
+                    </p>
+                    <p class="text--small text--muted">17 Ryburn Road, Waverley, Rotherham, S60 8AU</p>
+                    <p class="text--small text--muted">30/08/1989, Male</p>
+                </div>
+                <div class="search-item__options">
+                    <button class="button button--outline button--small">Add to PNB</>
+          </div>
+        </li>
+
+        <li class="search-item">
+          <div class="search-item__image" style="background-image: url(http://placehold.it/100x100);"></div>
+          <div class="search-item__content">
+            <p class="text--medium">
+              SURNAME, Forname
+              <span class="label label--red text--upcase">Warning</span>
+            </p>
+            <p class="text--small text--muted">17 Ryburn Road, Waverley, Rotherham, S60 8AU</p>
+            <p class="text--small text--muted">30/08/1989, Male</p>
+          </div>
+          <div class="search-item__options">
+            <button class="button button--outline button--small">Add to PNB</>
+          </div>
+        </li>
+
+        <li class="search-item">
+          <div class="search-item__image" style="background-image: url(http://placehold.it/100x100);"></div>
+          <div class="search-item__content">
+            <p class="text--medium">
+              SURNAME, Forname
+              <span class="label label--red text--upcase">Warning</span>
+            </p>
+            <p class="text--small text--muted">17 Ryburn Road, Waverley, Rotherham, S60 8AU</p>
+            <p class="text--small text--muted">30/08/1989, Male</p>
+          </div>
+          <div class="search-item__options">
+            <button class="button button--outline button--small">Add to PNB</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="text--center">
+        <p class="text--small text--muted">No more results.</p>
+    </div>
+
+
+
+    <div w3-include-html="footer.html"></div>
+    <script type="text/javascript" src="/js/include.js"></script>
+
+    <script type="text/javascript">
+        includeHTML();
+    </script>
+    <script type="text/javascript" src="./js/search.js"></script>
+    </div>
+
+</body>
+
+
+
+</html>

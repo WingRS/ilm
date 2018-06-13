@@ -1,9 +1,12 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\SearchQuary;
 use common\models\User;
+use common\models\UserSearch;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -73,7 +76,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('search');
+        return $this->redirect("/site/search");
     }
 
     /**
@@ -223,6 +226,61 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest) {
             $this->goHome();
         }
-        return $this->render("search");
+
+        $model = new UserSearch();
+        $dataProvider = $model->search(Yii::$app->request->queryParams);
+        $model->globalSearch = Yii::$app->request->getQueryParam("globalSearch");
+
+        if(!$this->addHistory()) {
+
+        }
+        return $this->render("search", [
+            "model" => $model,
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+
+    /**
+     * help functions
+     * @param UserSearch $model
+     * @param UserSearch $searchText
+     * @return ActiveDataProvider
+     **/
+
+    public function actionQuery() {
+        $model = new SearchQuary();
+        $model->created_at = time();
+        $model->quary = Yii::$app->request->queryParams;
+        $model->user_id = Yii::$app->user->getId();
+        if($model->save()) {
+
+        }
+        else {
+
+        }
+    }
+    private function addHistory() {
+        $history = new SearchQuary();
+        $history->created_at = time();
+        $history->user_id = Yii::$app->user->id;
+
+        $query = Yii::$app->request->queryString;
+        parse_str($query, $get_array);
+        if(empty($get_array["UserSearch"])) {
+            return true;
+        }
+        $query = $get_array["UserSearch"]["globalSearch"];
+        $query2 = $get_array["UserSearch"]["region"];
+
+        if(empty($query) && empty($query2)) {
+            return true;
+        }
+        $history->quary =$query;
+        $history->region = $query2;
+        if($history ->save()) {
+            return true;
+        }
+        return false;
     }
 }

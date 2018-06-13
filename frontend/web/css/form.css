@@ -12,6 +12,24 @@
   box-sizing: border-box;
 }
 
+.tags-input .tag {
+    background: #398ccf !important;
+    border-color: #398ccf !important;
+    color: #fff !important;
+}
+
+.tags-input{
+    /* width: inherit !important; */
+    flex: 1 0 220px !important;
+    /* width: 380px; */
+    border-color: #398ccf !important;
+}
+
+input:focus, .tags-input.focus {
+    border-color: #398ccf;
+    outline: none;
+}
+
 .flex-outer {
   background-color: #fff;
   padding: 40px !important;
