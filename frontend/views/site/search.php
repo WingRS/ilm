@@ -69,7 +69,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     </div>
 
     <!-- mobile submit -->
-    <?if($dataProvider->count>0) : ?>
+    <?php if($dataProvider->count>0) : ?>
     <ul class="card">
         <?php $models = $dataProvider->models; ?>
         <?php foreach ($models as $user){
@@ -91,7 +91,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
             </li>"; }?>
 
     </ul>
-    <?else: ?>
+    <?php else: ?>
         <div class="text--center">
             <p class="text--small text--muted">No more results.</p>
         </div>
