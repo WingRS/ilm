@@ -228,15 +228,20 @@ class SiteController extends Controller
         }
 
         $model = new UserSearch();
-        $dataProvider = $model->search(Yii::$app->request->queryParams);
-//        $model->globalSearch = Yii::$app->request->getQueryParam("globalSearch");
+        $dataProvider = new ActiveDataProvider();
 
-        if(!$this->addHistory()) {
+
+//        $model->globalSearch = Yii::$app->request->getQueryParam("globalSearch");
+        $render = false;
+        if($this->addHistory()) {
             $model->globalSearch = $this->getValue();
+            $dataProvider = $model->search(Yii::$app->request->queryParams);
+            $render = true;
         }
         return $this->render("search", [
             "model" => $model,
-            'dataProvider' => $dataProvider
+            'dataProvider' => $dataProvider,
+            'render' => $render
         ]);
     }
 
@@ -299,5 +304,17 @@ class SiteController extends Controller
             return "";
         }
         return $query;
+    }
+
+    private function check() {
+        $query = Yii::$app->request->queryString;
+        parse_str($query, $get_array);
+        if(empty($get_array["UserSearch"])) {
+            return false;
+        }
+        if($get_array["UserSearch"]["globalSearch"] == "") {
+            return false;
+        }
+        return true;
     }
 }

@@ -66,7 +66,7 @@ class UserSearch extends User
             ->orFilterWhere(['like', 'password_hash', $this->globalSearch])
             ->orFilterWhere(['like', 'password_reset_token', $this->globalSearch])
             ->orFilterWhere(['like', 'email', $this->globalSearch])
-//            ->orFilterWhere(['like', 'city', $this->globalSearch])
+            ->orFilterWhere(['like', 'city', $this->globalSearch])
             ->orFilterWhere(['like', 'name', $this->globalSearch])
             ->orFilterWhere(['like', 'surname', $this->globalSearch])
             ->orFilterWhere(['like', 'chair', $this->globalSearch])

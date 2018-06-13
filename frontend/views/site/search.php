@@ -10,7 +10,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use borales\extensions\phoneInput\PhoneInput;
 use yii\widgets\MaskedInput;
-$this->title = $model->globalSearch;
+if($model->globalSearch !="") {
+    $this->title = $model->globalSearch;
+}else {
+    $this->title = "Пошук серед випускників ІЛМ";
+}
 
 $this->registerJsFile(Yii::getAlias("@web").'/js/search.js');
 $this->registerJsFile(Yii::getAlias("@web").'/js/include.js');
@@ -69,7 +73,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     </div>
 
     <!-- mobile submit -->
-    <?php if($dataProvider->count>0) {
+    <?php if($render){   if($dataProvider->count>0) {
    echo '<ul class="card">';
        $models = $dataProvider->models;
       foreach ($models as $user){
@@ -96,7 +100,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
             <p class="text--small text--muted">No more results.</p>
         </div>
 <!--        --><?php //var_dump($dataProvider) ';
-     }?>
+     } }?>
 
 
 

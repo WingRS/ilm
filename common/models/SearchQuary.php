@@ -45,10 +45,11 @@ class SearchQuary extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'created_at' => 'Created At',
-            'quary' => 'Quary',
-            'user_id' => 'User ID',
+            'id' => 'Ідентифікатор',
+            'created_at' => 'Час запиту',
+            'quary' => 'Запит',
+            'user_id' => 'Ідентифікатор Користувача',
+            'region' => 'Регіон',
         ];
     }
 
