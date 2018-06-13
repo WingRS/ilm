@@ -69,10 +69,10 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     </div>
 
     <!-- mobile submit -->
-    <?php if($dataProvider->count>0) : ?>
-    <ul class="card">
-        <?php $models = $dataProvider->models; ?>
-        <?php foreach ($models as $user){
+    <?php if($dataProvider->count>0) {
+   echo '<ul class="card">';
+       $models = $dataProvider->models;
+      foreach ($models as $user){
           echo   "<li class='search-item'>
                 <div class='search-item__image' style='background-image: url(http://placehold.it/100x100);'></div>
                 <div class='search-item__content'>
@@ -88,15 +88,15 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
                 <div class='search-item__options'>
                     <button class='button button--outline button--small'>Add to PNB</>
                 </div>
-            </li>"; }?>
+            </li>"; }
 
-    </ul>
-    <?php else: ?>
-        <div class="text--center">
+   echo '</ul>'; }
+    else{
+       echo ' <div class="text--center">
             <p class="text--small text--muted">No more results.</p>
         </div>
-<!--        --><?php //var_dump($dataProvider) ?>
-    <?endif; ?>
+<!--        --><?php //var_dump($dataProvider) ';
+     }?>
 
 
 
