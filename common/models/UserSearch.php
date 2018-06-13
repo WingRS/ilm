@@ -58,7 +58,7 @@ class UserSearch extends User
             // $query->where('0=1');
             return $dataProvider;
         }
-
+       $this->globalSearch = trim($this->globalSearch);
 
 
         $query->orFilterWhere(['like', 'username', $this->globalSearch])
@@ -75,8 +75,8 @@ class UserSearch extends User
             ->orFilterWhere(['like', 'linkedin', $this->globalSearch])
             ->orFilterWhere(['like', 'phone', $this->globalSearch])
             ->orFilterWhere(['like', 'bio', $this->globalSearch])
-            ->orFilterWhere(['like', 'ilm_program', $this->globalSearch])
-            ->andFilterWhere(['like', 'city', $this->region]);
+            ->orFilterWhere(['like', 'ilm_program', $this->globalSearch]);
+//            ->andFilterWhere(['like', 'city', $this->region]);
 
         return $dataProvider;
     }

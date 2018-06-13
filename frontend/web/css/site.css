@@ -130,3 +130,8 @@ a.desc:after {
     border-radius: 0;
     height: auto;
 }
+.main-form-container {
+    display: block;
+    margin: 0 auto;
+    width:700px;
+}

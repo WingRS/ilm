@@ -14,17 +14,23 @@ use yii\widgets\MaskedInput;
 
 $this->registerJsFile(Yii::getAlias("@web").'/js/search.js');
 $this->registerJsFile(Yii::getAlias("@web").'/js/include.js');
+$this->registerCssFile(Yii::getAlias("@web").'/css/search_res.css');
+$this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
 
-<div class="centerbox">
+
+
+
+
+<div class="search__container">
 
     <h1>Пошук контаків випускників ІЛМ</h1>
 
     <!-- <p class="description">Use jQuery to select between search fields with a button combo box
       <br>By: <a href="https://twitter.com/freshmasterj" target="_blank">John McGarrah</a></p> -->
-
+    <div class="container my-container">
     <div class="main-form-container">
 
         <?php $form = ActiveForm::begin(['id' => 'search-form',
@@ -59,22 +65,40 @@ $this->registerJsFile(Yii::getAlias("@web").'/js/include.js');
 <!--            <input id="main-submit" class="" type="submit" value="Пошук" onclick="window.location.href='https://tbatsenko.github.io/ilm_database/search_results.html'"/>-->
         <?php ActiveForm::end(); ?>
     </div>
+<button type="button" id="main-submit-mobile"><a href="https://tbatsenko.github.io/ilm_database/search_results.html">Пошук</a></button>
+    </div>
+
+    <!-- mobile submit -->
+    <?if($dataProvider->count>0) : ?>
+    <ul class="card">
+        <?php $models = $dataProvider->models; ?>
+        <?foreach ($models as $user): ?>
+            <li class="search-item">
+                <div class="search-item__image" style="background-image: url(http://placehold.it/100x100);"></div>
+                <div class="search-item__content">
+                    <p class="text--medium">
+                        <?=  $user->surname." ". $user->name ?>
+
+                    </p>
+                    <p class="text--small text--muted">
+                        <?= $user->company .", ".$user->chair ." Місто: ".  $user->city  ?>
+                    </p>
+                    <p class="text--small "><a href="<?= $user->facebook ?>">Facebook </a> </p>
+                </div>
+                <div class="search-item__options">
+                    <button class="button button--outline button--small">Add to PNB</>
+                </div>
+            </li>
+        <?endforeach;?>
+    </ul>
+    <?else: ?>
+        <div class="text--center">
+            <p class="text--small text--muted">No more results.</p>
+        </div>
+<!--        --><?php //var_dump($dataProvider) ?>
+    <?endif; ?>
+
+
+
 </div>
 
-<!-- mobile submit -->
-<button type="button" id="main-submit-mobile"><a href="https://tbatsenko.github.io/ilm_database/search_results.html">Пошук</a></button>
-<?if($dataProvider->count>0) : ?>
-    <?php $models = $dataProvider->models;
-            foreach ($models as $user) {
-                if($user->city=="Львів") {
-                    continue;
-                }
-                echo "<br>".$user->name."</br>";
-
-            }
-
-    ?>
-
-<?else: ?>
-    <?php var_dump($dataProvider) ?>
-<?endif; ?>
