@@ -30,6 +30,7 @@ use yii\web\IdentityInterface;
  * @property string $bio
  * @property string $ilm_program
  * @property int $ilm_year
+ * @property string $avatar
  * @property string $city
  */
 class User extends ActiveRecord implements IdentityInterface

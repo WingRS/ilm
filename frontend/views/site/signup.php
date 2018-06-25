@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
+/* @var $list array*/
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -43,6 +44,12 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
             )->textInput(['placeholder'=>"Введіть Ваше прізвище"])->label(false) ?>
 
         </li>
+        <li>
+            <label for="photo"><b>Фото</b></label>
+            <?=  $form->field($model,"imageFile",['template' => '{input}'])->fileInput()->label(false) ?>
+<!--            <input type='file' onchange="readURL(this);" />-->
+        </li>
+        <img class="register-photo" id="blah" src="http://placehold.it/180" alt="your image" />
         <li>
             <label for="city">Місто</label>
             <?=   $form->field($model, 'city',['template' => '{input}']
@@ -127,7 +134,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
         <li>
             <label for="program">Назва програми в ІЛМ</label>
             <?=   $form->field($model, 'ilm_program',['template' => '{input}']
-            )->textInput(['placeholder'=>"Введіть назва програми в ІЛМ де ви навчалися"])->label(false) ?>
+            )->dropDownList($list,['prompt'=>"Введіть назву програми в ІЛМ де ви навчалися"])->label(false) ?>
 
 
         </li>
@@ -135,7 +142,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
         <li>
             <label for="grad_year">Рік випуску з ІЛМ</label>
             <?=   $form->field($model, 'ilm_year',['template' => '{input}']
-            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛМ"])->label(false) ?>
+            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛМ", "min"=>2004])->label(false) ?>
 
         </li>
 

@@ -1,8 +1,12 @@
 <?php
 namespace frontend\models;
 
+use phpDocumentor\Reflection\Types\Integer;
 use yii\base\Model;
 use common\models\User;
+use yii\db\Exception;
+use yii\web\UploadedFile;
+
 
 /**
  * Signup form
@@ -22,7 +26,12 @@ class SignupForm extends Model
     public $password;
     public $city;
     public $phone;
+    public $avatar;
     public $bio;
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
 
 
     /**
@@ -49,7 +58,12 @@ class SignupForm extends Model
             ['phone', 'trim'],
             ['phone', 'required'],
             ['phone', 'string', 'min' => 2, 'max' => 255],
+
+//            ['avatar', 'trim'],
+//            ['avatar', 'required'],
+//            ['avatar', 'string', 'min' => 2, 'max' => 255],
 //
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
 //
             ['surname', 'trim'],
             ['surname', 'required'],
@@ -95,9 +109,6 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if (!$this->validate()) {
-            return null;
-        }
 
         $user = new User();
         $user->username = $this->name."@".$this->surname;
@@ -110,37 +121,31 @@ class SignupForm extends Model
         $user->facebook = $this->facebook;
         $user->linkedin = $this->linkedin;
         $user->ilm_program= $this->ilm_program;
+        $user->ilm_year = intval($this->ilm_year);
+        $user->avatar = $this->avatar;
+        $user->phone = $this->phone;
+        $user->bio = $this->bio;
+        $user->created_at = time();
+        $user->updated_at = time();
+        $user->status = $user::STATUS_ACTIVE;
         $user->setPassword($this->password);
         $user->generateAuthKey();
 
-
-//        $user = new User();
-//        $user->username = $this->email."huy";
-//        $user->email = $this->email;
-//        $user->name = $this->name;
-//        $user->surname = $this->name;
-//        $user->bio = $this->bio;
-//        $user->ilm_program= $this->name;
-//        $user->ilm_year = $this->name;
-//        $user->chair= $this->name;
-//        $user->company = $this->name;
-//        $user->linkedin = $this->name;
-//        $user->facebook = $this->name;
-//        $user->city = $this->city;
-//        $user->phone = $this->phone;
-//        $user->created_at = time();
-//        $user->updated_at = time();
-//        $user->setPassword($this->password);
-//        $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+        return $user->save(false) ? $user : null;
     }
 
-//    public function load($data, $formName = null)
-//    {
-//        $this->setAttributes($data);
-//        return true;
-//    }
 
 
+    public function upload()
+    {
+        if ($this->validate()) {
+
+            $this->imageFile->saveAs(\Yii::getAlias("@webroot").'/uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+
+            $this->avatar = "uploads/". $this->imageFile->baseName . '.' . $this->imageFile->extension;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

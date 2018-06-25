@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Programs;
 use common\models\SearchQuary;
 use common\models\User;
 use common\models\UserSearch;
@@ -16,6 +17,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\web\UploadedFile;
+
 
 /**
  * Site controller
@@ -156,7 +159,12 @@ class SiteController extends Controller
     public function actionSignup()
     {
         $model = new SignupForm();
+        $list = $this->getPrograms();
         if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if(!$model->upload()) {
+                return   Yii::getAlias("@webroot")."kek";
+            }
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
@@ -169,6 +177,7 @@ class SiteController extends Controller
 
         return $this->render('signup', [
             'model' => $model,
+            'list' => $list
         ]);
     }
 
@@ -316,5 +325,15 @@ class SiteController extends Controller
             return false;
         }
         return true;
+    }
+
+
+    private function getPrograms() {
+        $models = Programs::findAll([ "is_active"=>true]);
+        $list = array();
+        foreach ($models as $model) {
+            $list[$model->program_name] = $model->program_name;
+        }
+        return $list;
     }
 }
