@@ -2,6 +2,7 @@
 namespace frontend\models;
 
 use phpDocumentor\Reflection\Types\Integer;
+use ruskid\csvimporter\CSVImporter;
 use yii\base\Model;
 use common\models\User;
 use yii\db\Exception;
@@ -111,7 +112,7 @@ class SignupForm extends Model
     {
 
         $user = new User();
-        $user->username = $this->name."@".$this->surname;
+        $user->username = $this->name."_".$this->surname;
         $user->email = $this->email;
         $user->name=  $this->name;
         $user->surname = $this->surname;
@@ -147,5 +148,18 @@ class SignupForm extends Model
         } else {
             return false;
         }
+    }
+
+
+    public function getCitites() {
+        $importer = new CSVImporter;
+
+//Will read CSV file
+        $importer->setData(new CSVReader([
+            'filename' => \Yii::getAlias("@webroot")."/uploads",
+            'fgetcsvOptions' => [
+                'delimiter' => ','
+            ]
+        ]));
     }
 }

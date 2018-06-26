@@ -25,6 +25,7 @@
                     ['label' => 'Користувачі', 'icon' => 'address-book', 'url' => ['/user']],
                     ['label' => 'Запити', 'icon' => 'archive', 'url' => ['/search']],
                     ['label' => 'Програми', 'icon' => 'archive', 'url' => ['/programs']],
+                    ['label' => 'Запрошення', 'icon' => 'archive', 'url' => ['/invitation']],
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
 //                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

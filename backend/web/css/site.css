@@ -118,3 +118,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+div#w1.grid-view {
+    overflow-y: auto ;
+}
