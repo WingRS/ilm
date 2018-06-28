@@ -50,6 +50,11 @@ class UserController extends Controller
                         'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@']
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@']
                     ]
                 ],
             ],
