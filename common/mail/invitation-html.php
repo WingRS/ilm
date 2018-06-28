@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 
 /* @var $model common\models\Invitation */
-$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['invite/signup'.$model->invite_string]);
+$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['invite/signup/'.$model->invite_string]);
 $resetLink = str_replace("/admin","",$resetLink);
 ?>
 
