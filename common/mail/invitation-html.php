@@ -1,8 +1,11 @@
 <?php
 /* @var $this yii\web\View */
 ///* @var $user common\models\User */
-/* @var $model common\models\Invitation */
+use yii\helpers\Html;
 
+/* @var $model common\models\Invitation */
+$resetLink = Yii::$app->urlManager->createAbsoluteUrl(['invite/signup'.$model->invite_string]);
+$resetLink = str_replace("/admin","",$resetLink);
 ?>
 
 <div class="password-reset">
@@ -13,7 +16,8 @@
     </h3>
 
     <p>
-        <a href="<?= \yii\helpers\Url::home() ?> /invite/signup/<?=  $model->invite_string ?>">Ваше посилання для реєстрації</a>
+        Ваше посилання для реєстрації
     </p>
+    <p><?= Html::a(Html::encode($resetLink), $resetLink) ?></p>
 </div>
 
