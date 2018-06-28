@@ -30,7 +30,7 @@ class Invitation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_at', 'used_at'], 'safe'],
+            [['created_at', 'used_at'], 'integer'],
             [['is_active'], 'integer'],
             [['email', 'invite_string'], 'string', 'max' => 255],
         ];
@@ -55,6 +55,7 @@ class Invitation extends \yii\db\ActiveRecord
     {
         $this->invite_string = Yii::$app->security->generateRandomString();
         if( $this->isNewRecord) {
+            $this->created_at = time();
             $this->is_active = true;
         }
         $this->sendInvitation();

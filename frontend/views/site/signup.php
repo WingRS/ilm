@@ -17,7 +17,9 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/normalize.css');
 $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
 ?>
 
-<?php $form = ActiveForm::begin([
+<?php
+
+$form = ActiveForm::begin([
         'id' => 'form-signup',
     'options'=> ['class'=> 'form-registration'],
     'fieldConfig' => [
@@ -53,7 +55,8 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
         <li>
             <label for="city">Місто</label>
             <?=   $form->field($model, 'city',['template' => '{input}']
-            )->textInput(['placeholder'=>"Введіть місто де ви зараз проживаєте"])->label(false) ?>
+            )->dropDownList($model->getCitites(),['prompt'=>"Виберіть область"])->label(false) ?>
+
 
 
         </li>
@@ -108,13 +111,13 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
             )->textInput(['placeholder'=>"Посилання на Вашу LinkedIn сторінку"])->label(false) ?>
 
         </li>
-
+я
         <li>
             <label for="phone">Телефон</label>
             <?=   $form->field($model, 'phone', ['template' => '{input}'])->widget(MaskedInput::className(),[
                 'name' => 'input-1',
                 'mask' => '(999) 999-9999'
-            ])?>
+            ]);?>
 
 
         </li>

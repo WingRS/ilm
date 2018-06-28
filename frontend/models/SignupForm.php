@@ -3,6 +3,7 @@ namespace frontend\models;
 
 use phpDocumentor\Reflection\Types\Integer;
 use ruskid\csvimporter\CSVImporter;
+use ruskid\csvimporter\CSVReader;
 use yii\base\Model;
 use common\models\User;
 use yii\db\Exception;
@@ -152,14 +153,23 @@ class SignupForm extends Model
 
 
     public function getCitites() {
-        $importer = new CSVImporter;
+        $cities = array();
+        $row = 1;
+        if (($handle = fopen(\Yii::getAlias("@webroot")."/uploads/cities.csv", "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+              $num = count($data);
 
-//Will read CSV file
-        $importer->setData(new CSVReader([
-            'filename' => \Yii::getAlias("@webroot")."/uploads",
-            'fgetcsvOptions' => [
-                'delimiter' => ','
-            ]
-        ]));
+              $row++;
+                for ($c=0; $c < $num; $c++) {
+                    if(!empty($data[$c])) {
+                        array_push($cities, $data[$c]);
+                    }
+                }
+            }
+            fclose($handle);
+        }
+
+        return $cities;
+
     }
 }

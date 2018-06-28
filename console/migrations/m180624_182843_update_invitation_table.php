@@ -20,9 +20,9 @@ class m180624_182843_update_invitation_table extends Migration
      */
     public function safeDown()
     {
-        echo "m180624_182843_update_invitation_table cannot be reverted.\n";
+        $this->dropColumn("invitation_model", "used_at");
 
-        return false;
+        return true;
     }
 
     /*
