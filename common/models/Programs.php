@@ -44,6 +44,13 @@ class Programs extends \yii\db\ActiveRecord
         ];
     }
 
-
+    public static function getPrograms() {
+        $models = self::findAll([ "is_active"=>true]);
+        $list = array();
+        foreach ($models as $model) {
+            $list[$model->program_name] = $model->program_name;
+        }
+        return $list;
+    }
 
 }

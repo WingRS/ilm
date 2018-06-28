@@ -58,6 +58,10 @@ class Invitation extends \yii\db\ActiveRecord
             $this->created_at = time();
             $this->is_active = true;
         }
+        if(User::findByEmail($this->email) != null) {
+            Yii::$app->session->setFlash("error","Такий користувач вже існує. Запрошувати можна тільки користувачів котрі ще не зареєструвались.");
+            return false;
+        }
         $this->sendInvitation();
         return parent::save($runValidation, $attributeNames);
     }
@@ -75,6 +79,12 @@ class Invitation extends \yii\db\ActiveRecord
             ->setTo($this->email)
             ->setSubject('Запрошення на портал ІЛМ ' )
             ->send();
+        Yii::$app->session->setFlash("success","Користувача успішно запрошено на портал.");
+    }
+
+
+    public static function getByInvite($invite) {
+        return self::findOne(["invite_string"=>$invite, "is_active"=> true]);
     }
 
 }

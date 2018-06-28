@@ -155,7 +155,7 @@ class SignupForm extends Model
     public function getCitites() {
         $cities = array();
         $row = 1;
-        if (($handle = fopen(\Yii::getAlias("@webroot")."/uploads/cities.csv", "r")) !== FALSE) {
+        if (($handle = fopen(\Yii::getAlias("@webroot")."/files/cities.csv", "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
               $num = count($data);
 

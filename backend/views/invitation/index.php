@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="invitation-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-        <?= parse_ini_file("/home/smtp.ini")["pass"] ?>
+<!--        --><?//= parse_ini_file("/home/smtp.ini")["pass"] ?>
 
     <p>
         <?= Html::a('Створити запрошення', ['create'], ['class' => 'btn btn-success']) ?>

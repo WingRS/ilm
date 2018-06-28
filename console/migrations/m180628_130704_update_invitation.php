@@ -23,7 +23,7 @@ class m180628_130704_update_invitation extends Migration
     {
         $this->dropColumn("invitation_model", "created_at");
         $this->dropColumn("invitation_model", "used_at");
-        return false;
+        return true;
     }
 
 

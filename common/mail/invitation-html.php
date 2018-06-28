@@ -12,5 +12,8 @@
 
     </h3>
 
+    <p>
+        <a href="<?= \yii\helpers\Url::home() ?> /invite/signup/<?=  $model->invite_string ?>">Ваше посилання для реєстрації</a>
+    </p>
 </div>
 

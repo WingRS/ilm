@@ -14,7 +14,7 @@ class m180624_175830_create_invitation_model_table extends Migration
     {
         $this->createTable('invitation_model', [
             'id' => $this->primaryKey(),
-            'email' => $this->string(),
+            'email' => $this->string()->unique(),
             'invite_string' => $this->string(),
             'created_at' => $this->timestamp(),
             'is_active' =>  $this->boolean()

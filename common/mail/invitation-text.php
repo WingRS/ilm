@@ -6,5 +6,5 @@
 ?>
 
 <p>
-    <a href="localhost/test/invitation/<?=  $model->invite_string ?>">Ваше посилання для реєстрації</a>
+    <a href="<?= \yii\helpers\Url::home() ?> /test/invitation/<?=  $model->invite_string ?>">Ваше посилання для реєстрації</a>
 </p>
