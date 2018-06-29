@@ -112,6 +112,9 @@ class SignupForm extends Model
      */
     public function signup()
     {
+        if(!$this->validate()) {
+            return null;
+        }
 
         $user = new User();
         $user->username = $this->name."_".$this->surname;
@@ -134,7 +137,7 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
 
-        return $user->save(false) ? $user : null;
+        return $user->save(true) ? $user : null;
     }
 
 

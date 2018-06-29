@@ -63,9 +63,9 @@ class InviteController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if(!$model->upload()) {
-                return   Yii::getAlias("@webroot")."kek";
-            }
+//            if(!$model->upload()) {
+//                return   Yii::getAlias("@webroot")."kek";
+//            }
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     $inviteModel->used_at = time();

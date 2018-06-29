@@ -46,6 +46,7 @@ $form = ActiveForm::begin([
             )->textInput(['placeholder'=>"Введіть Ваше прізвище"])->label(false) ?>
 
         </li>
+        Фото не додавайте, тимчасово неактивно, для збереження місця на сервері.
         <li>
             <label for="photo"><b>Фото</b></label>
             <?=  $form->field($model,"imageFile",['template' => '{input}'])->fileInput()->label(false) ?>
