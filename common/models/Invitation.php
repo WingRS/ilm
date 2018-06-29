@@ -60,9 +60,10 @@ class Invitation extends \yii\db\ActiveRecord
                 Yii::$app->session->setFlash("error","Такий користувач вже існує. Запрошувати можна тільки користувачів котрі ще не зареєструвались.");
                 return false;
             }
+            $this->sendInvitation();
         }
 
-        $this->sendInvitation();
+
         return parent::save($runValidation, $attributeNames);
     }
 
