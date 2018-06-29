@@ -112,9 +112,9 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if(!$this->validate()) {
-            return null;
-        }
+//        if(!$this->validate()) {
+//            return null;
+//        }
 
         $user = new User();
         $user->username = $this->name."_".$this->surname;
@@ -128,7 +128,7 @@ class SignupForm extends Model
         $user->linkedin = $this->linkedin;
         $user->ilm_program= $this->ilm_program;
         $user->ilm_year = intval($this->ilm_year);
-        $user->avatar = $this->avatar;
+//        $user->avatar = $this->avatar;
         $user->phone = $this->phone;
         $user->bio = $this->bio;
         $user->created_at = time();
