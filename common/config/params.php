@@ -1,4 +1,6 @@
 <?php
+Yii::setAlias('root', dirname(dirname(__DIR__)));
+
 return [
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',

@@ -28,7 +28,7 @@ $form = ActiveForm::begin([
             ],
         ],
     ]); ?>
-
+<?= Yii::getAlias("@root/web/uploads");  ?>
 
     <ul class="flex-outer">
 
