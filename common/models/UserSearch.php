@@ -119,9 +119,7 @@ class UserSearch extends User
             ->orFilterWhere(['like', 'phone', $this->globalSearch])
             ->orFilterWhere(['like', 'bio', $this->globalSearch])
             ->orFilterWhere(['like', 'ilm_program', $this->globalSearch]);
-        if($region != self::DEFAULT_REGION) {
-            $query->andFilterWhere(['=','city', $region]);
-        }
+
 //            ->andFilterWhere(['like', 'city', $this->region]);
 
         return $dataProvider;
