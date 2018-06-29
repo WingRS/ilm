@@ -31,7 +31,6 @@ AppAsset::register($this);
     <ul class="main-nav">
 
         <?php if(Yii::$app->user->isGuest): ?>
-        <li><a href="/site/login">Вхід</a></li>
 
             <?php else: ?>
             <li><a href="/site/search">Пошук</a></li>
