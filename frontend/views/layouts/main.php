@@ -32,9 +32,11 @@ AppAsset::register($this);
 
         <?php if(Yii::$app->user->isGuest): ?>
         <li><a href="/site/login">Вхід</a></li>
-        <li><a href="/site/signup">Реєстрація</a></li>
+
             <?php else: ?>
             <li><a href="/site/search">Пошук</a></li>
+            <li><a href="/profile/">Профіль</a></li>
+            <li><a href="/profile/edit">Редагувати інформацію</a></li>
             <li><a href="/site/logout">Вихід</a></li>
         <?php endif; ?>
     </ul>
