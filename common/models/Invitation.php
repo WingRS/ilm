@@ -31,7 +31,7 @@ class Invitation extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'used_at'], 'integer'],
-            [['is_active'], 'integer'],
+//            [['is_active'], 'integer'],
             [['email', 'invite_string'], 'string', 'max' => 255],
         ];
     }
