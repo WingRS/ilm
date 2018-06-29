@@ -11,7 +11,7 @@ use borales\extensions\phoneInput\PhoneInput;
 use yii\widgets\MaskedInput;
 
 
-$this->title = 'Редагування профілю';
+$this->title = 'Реєстрація';
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCssFile(Yii::getAlias("@web").'/css/normalize.css');
 $this->registerCssFile(Yii::getAlias("@web").'/css/form.css');
@@ -28,7 +28,6 @@ $form = ActiveForm::begin([
             ],
         ],
     ]); ?>
-<?= Yii::getAlias("@root/web/uploads");  ?>
 
     <ul class="flex-outer">
 
@@ -48,14 +47,14 @@ $form = ActiveForm::begin([
         </li>
         <li>
             <label for="photo"><b>Фото</b></label>
-            <?=  $form->field($model,"imageFile",['template' => '{input}'])->fileInput()->label(false) ?>
+            <?=  $form->field($model,"avatar",['template' => '{input}'])->fileInput()->label(false) ?>
 <!--            <input type='file' onchange="readURL(this);" />-->
         </li>
         <img class="register-photo" id="blah" src="http://placehold.it/180" alt="your image" />
         <li>
             <label for="city">Місто</label>
             <?=   $form->field($model, 'city',['template' => '{input}']
-            )->dropDownList($model->getCitites(),['prompt'=>"Виберіть область"])->label(false) ?>
+            )->dropDownList(\frontend\models\SignupForm::getCitites(),['prompt'=>"Виберіть область"])->label(false) ?>
 
 
 
@@ -84,13 +83,6 @@ $form = ActiveForm::begin([
 
         </li>
 
-        <li>
-            <label for="password">Пароль</label>
-            <?=   $form->field($model, 'password',['template' => '{input}']
-            )->passwordInput(['placeholder'=>"Введіть Ваш пароль"])->label(false) ?>
-
-
-        </li>
 
 
         <li>
@@ -130,7 +122,7 @@ $form = ActiveForm::begin([
         <li>
             <label for="program">Назва програми в ІЛМ</label>
             <?=   $form->field($model, 'ilm_program',['template' => '{input}']
-            )->dropDownList($list,['prompt'=>"Введіть назву програми в ІЛМ де ви навчалися"])->label(false) ?>
+            )->dropDownList(\common\models\Programs::getPrograms(),['prompt'=>"Введіть назву програми в ІЛМ де ви навчалися"])->label(false) ?>
 
 
         </li>
@@ -138,12 +130,12 @@ $form = ActiveForm::begin([
         <li>
             <label for="grad_year">Рік випуску з ІЛМ</label>
             <?=   $form->field($model, 'ilm_year',['template' => '{input}']
-            )->input('numeric',['placeholder'=>"Введіть рік випуску з ІЛМ", "min"=>2004])->label(false) ?>
+            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛМ", "min"=>2004])->label(false) ?>
 
         </li>
 
         <li>
-            <?= Html::submitButton('Зареєструватись', ['name' => 'signup-button']) ?>
+            <?= Html::submitButton('Зберегти зміни', ['name' => 'signup-button']) ?>
 
         </li>
     </ul>

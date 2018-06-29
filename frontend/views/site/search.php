@@ -52,17 +52,16 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
 
 
 
-        <button type="button" class="main-btn"><p class="search-small">Місто</p><p class="search-large">Місто</p></button>
+        <button type="button" class="main-btn"><p class="search-small">Регіон</p><p class="search-large"><?= $region ?></p></button>
         <ul class="search-description">
-            <li>
-                Калуш
-            </li>
-            <li>
-                Львів
-            </li>
-            <li>
-                Городок
-            </li>
+            <li>Україна</li>
+            <?php
+
+                foreach(\frontend\models\SignupForm::getCitites() as $city) {
+                    echo "<li> ". str_replace("область", "", $city)."</li>";
+                }
+
+            ?>
         </ul>
 
             <?= Html::submitButton('Пошук', ['id'=>'main-submit']) ?>
@@ -75,8 +74,13 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
     <!-- mobile submit -->
     <?php if($render){   if($dataProvider->count>0) {
    echo '<ul class="card">';
+
        $models = $dataProvider->models;
       foreach ($models as $user){
+//          if($region != "Україна" && str_replace("область", "" ,$user->city)  != $region) {
+//
+//            continue;
+//          }
           echo   "<li class='search-item'>
                 <div class='search-item__image' style='background-image: url(http://placehold.it/100x100);'></div>
                 <div class='search-item__content'>
@@ -85,12 +89,12 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
 
                     </p>
                     <p class='text--small text--muted'>
-                      ".$user->company .", ".$user->chair ." Місто: ".  $user->city."
+                      ".$user->company .", ".$user->chair ." Область: ".  $user->city."
                     </p>
                     <p class='text--small '><a href='". $user->facebook ."'>Facebook </a> </p>
                 </div>
                 <div class='search-item__options'>
-                    <button class='button button--outline button--small'>Add to PNB</>
+                    <a class='btn btn-success btn-block' href='/profile/view/".$user->id."'>Профіль<a/>
                 </div>
             </li>"; }
 
@@ -104,4 +108,8 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
 
 
 </div>
+
+
+
+
 

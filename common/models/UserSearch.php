@@ -24,7 +24,7 @@ class UserSearch extends User
             [['username', 'auth_key','globalSearch', 'password_hash', 'password_reset_token', 'email', 'city', 'name', 'surname', 'chair', 'company', 'facebook', 'linkedin', 'phone', 'bio', 'ilm_program', 'region'], 'safe'],
         ];
     }
-
+    const  DEFAULT_REGION = "Україна";
     /**
      * {@inheritdoc}
      */
@@ -41,7 +41,7 @@ class UserSearch extends User
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $region)
     {
         $query = User::find();
 
@@ -76,6 +76,9 @@ class UserSearch extends User
             ->orFilterWhere(['like', 'phone', $this->globalSearch])
             ->orFilterWhere(['like', 'bio', $this->globalSearch])
             ->orFilterWhere(['like', 'ilm_program', $this->globalSearch]);
+        if($region != self::DEFAULT_REGION) {
+            $query->andFilterWhere(['=','city', $region]);
+        }
 //            ->andFilterWhere(['like', 'city', $this->region]);
 
         return $dataProvider;

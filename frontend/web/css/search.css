@@ -94,14 +94,14 @@ p {
  .main-btn {
     background-color: #fff !important;
     display: inline-block;
-    width:150px;
+    width:181px;
     height:50px;
     border: 1px solid #cccccc;
     padding:0px;
     position: relative;
     float:left;
     border-right:0px;
-    background: #ffffff url("http://seodesigns.com/projects/TD/images/main-bullet.png") 122px 23px no-repeat;
+    background: #ffffff url("http://seodesigns.com/projects/TD/images/main-bullet.png") 168px 23px no-repeat;
     background-size:6px 6px;
     cursor: pointer;
 }
@@ -136,10 +136,10 @@ p {
      z-index: 9;
 }
  ul.search-description {
-    width:150px;
+    width:181px;
     position: absolute;
      background: #fff;
-    right:233px;
+    right:202px;
     top:55px;
      border-radius: 2px;
      -moz-border-radius: 2px;

@@ -1,20 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: StasMaster
+ * Date: 29.06.18
+ * Time: 21:02
+ */
+
 namespace frontend\models;
 
-use phpDocumentor\Reflection\Types\Integer;
-use ruskid\csvimporter\CSVImporter;
-use ruskid\csvimporter\CSVReader;
+
+use common\models\User;
 use Yii;
 use yii\base\Model;
-use common\models\User;
-use yii\db\Exception;
 use yii\web\UploadedFile;
 
-
-/**
- * Signup form
- */
-class SignupForm extends Model
+class Profile extends Model
 {
     public $username;
     public $email;
@@ -66,7 +66,7 @@ class SignupForm extends Model
 //            ['avatar', 'required'],
 //            ['avatar', 'string', 'min' => 2, 'max' => 255],
 //
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+//            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
 //
             ['surname', 'trim'],
             ['surname', 'required'],
@@ -116,7 +116,7 @@ class SignupForm extends Model
 //            return null;
 //        }
 
-        $user = new User();
+        $user = User::findById(Yii::$app->user->id);
         $user->username = $this->name."_".$this->surname;
         $user->email = $this->email;
         $user->name=  $this->name;
@@ -131,9 +131,7 @@ class SignupForm extends Model
 //        $user->avatar = $this->avatar;
         $user->phone = $this->phone;
         $user->bio = $this->bio;
-        $user->created_at = time();
         $user->updated_at = time();
-        $user->status = $user::STATUS_ACTIVE;
         $user->setPassword($this->password);
         $user->generateAuthKey();
 
@@ -156,28 +154,26 @@ class SignupForm extends Model
     }
 
 
-    public static function getCitites() {
-        $cities = array();
-        $row = 1;
-        if (($handle = fopen(Yii::getAlias("@root/frontend/web")."/files/cities.csv", "r")) !== FALSE) {
-            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-              $num = count($data);
 
-              $row++;
-                for ($c=0; $c < $num; $c++) {
-                    if(!empty($data[$c])) {
-                        $cities[$data[$c]] =$data[$c];
-//                        array_push($cities, $data[$c]);
-                    }
-                }
-            }
-            fclose($handle);
-        }
 
-        return $cities;
 
+    public  static function findById($id) {
+        $user = User::findById($id);
+        $profile = new Profile();
+        $profile->username = $user->username ;
+        $profile->email = $user->email;
+        $profile->name = $user->name;
+        $profile->surname =  $user->surname;
+        $profile->city =  $user->city;
+        $profile->chair = $user->chair;
+        $profile->company = $user->company;
+        $profile->facebook = $user->facebook;
+        $profile->linkedin = $user->linkedin;
+        $profile->ilm_program = $user->ilm_program;
+        $profile->ilm_year = $user->ilm_year;
+
+        $profile->phone = $user->phone;
+        $profile->bio = $user->bio;
+        return $profile;
     }
-
-
-
 }

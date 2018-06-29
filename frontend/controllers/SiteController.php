@@ -235,7 +235,7 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest) {
             $this->goHome();
         }
-
+        $region = "Україна";
         $model = new UserSearch();
         $dataProvider = new ActiveDataProvider();
 
@@ -244,13 +244,14 @@ class SiteController extends Controller
         $render = false;
         if($this->addHistory()) {
             $model->globalSearch = $this->getValue();
-            $dataProvider = $model->search(Yii::$app->request->queryParams);
+            $dataProvider = $model->search(Yii::$app->request->queryParams, $this->getRegion());
             $render = true;
         }
         return $this->render("search", [
             "model" => $model,
             'dataProvider' => $dataProvider,
-            'render' => $render
+            'render' => $render,
+            "region" => $this->getRegion()
         ]);
     }
 
@@ -298,6 +299,9 @@ class SiteController extends Controller
         }
         return false;
     }
+
+
+
     private function getValue() {
 
 
@@ -313,6 +317,22 @@ class SiteController extends Controller
             return "";
         }
         return $query;
+    }
+    private function getRegion() {
+
+
+        $query = Yii::$app->request->queryString;
+        parse_str($query, $get_array);
+        if(empty($get_array["UserSearch"])) {
+            return "";
+       }
+        $query = $get_array["UserSearch"]["globalSearch"];
+        $query2 = $get_array["UserSearch"]["region"];
+
+        if(empty($query) && empty($query2)) {
+            return "";
+        }
+        return $query2;
     }
 
     private function check() {
