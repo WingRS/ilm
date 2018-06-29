@@ -4,6 +4,7 @@ namespace frontend\models;
 use phpDocumentor\Reflection\Types\Integer;
 use ruskid\csvimporter\CSVImporter;
 use ruskid\csvimporter\CSVReader;
+use Yii;
 use yii\base\Model;
 use common\models\User;
 use yii\db\Exception;
@@ -142,7 +143,7 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
 
-            $this->imageFile->saveAs(\Yii::getAlias("@webroot").'/uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            $this->imageFile->saveAs(Yii::getAlias("@root/frontend/web/uploads") . $this->imageFile->baseName . '.' . $this->imageFile->extension);
 
             $this->avatar = "uploads/". $this->imageFile->baseName . '.' . $this->imageFile->extension;
             return true;
@@ -155,7 +156,7 @@ class SignupForm extends Model
     public function getCitites() {
         $cities = array();
         $row = 1;
-        if (($handle = fopen(\Yii::getAlias("@webroot")."/files/cities.csv", "r")) !== FALSE) {
+        if (($handle = fopen(Yii::getAlias("@root/frontend/web")."/files/cities.csv", "r")) !== FALSE) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
               $num = count($data);
 
