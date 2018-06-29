@@ -166,7 +166,8 @@ class SignupForm extends Model
               $row++;
                 for ($c=0; $c < $num; $c++) {
                     if(!empty($data[$c])) {
-                        array_push($cities, $data[$c]);
+                        $cities[$data[$c]] =$data[$c];
+//                        array_push($cities, $data[$c]);
                     }
                 }
             }

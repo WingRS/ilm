@@ -161,10 +161,10 @@ class SiteController extends Controller
         $model = new SignupForm();
         $list = $this->getPrograms();
         if ($model->load(Yii::$app->request->post())) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if(!$model->upload()) {
-                return   Yii::getAlias("@webroot")."kek";
-            }
+//            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+//            if(!$model->upload()) {
+//                return   Yii::getAlias("@webroot")."kek";
+//            }
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
