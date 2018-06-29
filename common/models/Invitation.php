@@ -31,7 +31,6 @@ class Invitation extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'used_at'], 'integer'],
-//            [['is_active'], 'integer'],
             [['email', 'invite_string'], 'string', 'max' => 255],
         ];
     }
@@ -57,11 +56,12 @@ class Invitation extends \yii\db\ActiveRecord
         if( $this->isNewRecord) {
             $this->created_at = time();
             $this->is_active = true;
+            if(User::findByEmail($this->email) != null) {
+                Yii::$app->session->setFlash("error","Такий користувач вже існує. Запрошувати можна тільки користувачів котрі ще не зареєструвались.");
+                return false;
+            }
         }
-        if(User::findByEmail($this->email) != null) {
-            Yii::$app->session->setFlash("error","Такий користувач вже існує. Запрошувати можна тільки користувачів котрі ще не зареєструвались.");
-            return false;
-        }
+
         $this->sendInvitation();
         return parent::save($runValidation, $attributeNames);
     }
