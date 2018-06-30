@@ -29,7 +29,7 @@ class InvitationController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'create','view','edit'],
+                        'actions' => ['logout', 'index', 'create','view','edit', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
