@@ -11,6 +11,7 @@ namespace frontend\controllers;
 
 use common\models\Invitation;
 use common\models\Programs;
+use common\models\Test;
 use frontend\models\SignupForm;
 use Yii;
 use yii\filters\AccessControl;
@@ -52,9 +53,10 @@ class InviteController extends Controller
     }
 
 
-    public function actionSignup($invite) {
+    public function actionSignup($invite)
+    {
         $inviteModel = Invitation::getByInvite($invite);
-        if( $inviteModel == null)  {
+        if ($inviteModel == null) {
             $this->redirect("/");
         }
         $model = new SignupForm();
@@ -70,11 +72,11 @@ class InviteController extends Controller
                 if (Yii::$app->getUser()->login($user)) {
                     $inviteModel->used_at = time();
                     $inviteModel->is_active = false;
-                    if($inviteModel->save()) {
+                    if ($inviteModel->save()) {
                         return $this->redirect("/");
                     }
                 }
-            }else {
+            } else {
 
                 return var_dump(Yii::$app->request->post());
             }
@@ -88,6 +90,22 @@ class InviteController extends Controller
     }
 
 
+    public function actionIndex()
+    {
+        if (Yii::$app->request->post()) {
+            $model = new Test();
+            $model->text = Yii::$app->request->post();
+            if ($model->save()) {
+                return "true" . $model->text;
+            }
+        }else {
+            $model = new Test();
+            $model->text = "idi nahui";
+            if($model->save()) {
+                return "false";
+            }
+        }
 
 
+    }
 }
