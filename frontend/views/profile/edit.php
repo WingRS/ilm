@@ -120,17 +120,17 @@ $form = ActiveForm::begin([
 
 
         <li>
-            <label for="program">Назва програми в ІЛМ</label>
+            <label for="program">Назва програми в ІЛУ</label>
             <?=   $form->field($model, 'ilm_program',['template' => '{input}']
-            )->dropDownList(\common\models\Programs::getPrograms(),['prompt'=>"Введіть назву програми в ІЛМ де ви навчалися"])->label(false) ?>
+            )->dropDownList(\common\models\Programs::getPrograms(),['prompt'=>"Введіть назву програми в ІЛУ де ви навчалися"])->label(false) ?>
 
 
         </li>
 
         <li>
-            <label for="grad_year">Рік випуску з ІЛМ</label>
+            <label for="grad_year">Рік випуску з ІЛУ</label>
             <?=   $form->field($model, 'ilm_year',['template' => '{input}']
-            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛМ", "min"=>2004])->label(false) ?>
+            )->input('number',['placeholder'=>"Введіть рік випуску з ІЛУ", "min"=>2004])->label(false) ?>
 
         </li>
 

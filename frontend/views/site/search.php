@@ -13,7 +13,7 @@ use yii\widgets\MaskedInput;
 if($model->globalSearch !="") {
     $this->title = $model->globalSearch;
 }else {
-    $this->title = "Пошук серед випускників ІЛМ";
+    $this->title = "Пошук серед випускників ІЛУ";
 }
 
 $this->registerJsFile(Yii::getAlias("@web").'/js/search.js');
@@ -30,7 +30,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/results.css');
 
 <div class="search__container">
 
-    <h1>Пошук контаків випускників ІЛМ</h1>
+    <h1>Пошук контаків випускників ІЛУ</h1>
 
     <!-- <p class="description">Use jQuery to select between search fields with a button combo box
       <br>By: <a href="https://twitter.com/freshmasterj" target="_blank">John McGarrah</a></p> -->

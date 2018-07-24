@@ -22,8 +22,8 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/search_res.css');
                     <p><strong>Про мене: </strong> <?= $model->bio  ?> </p>
                     <p><strong>Місто: </strong> <?= $model->city ?> </p>
                     <p><strong>Телефон: </strong> <?= $model->phone ?> </p>
-                    <p><strong>Програма ІЛМ: </strong> <?= $model->ilm_program ?></p>
-                    <p><strong>Рік випуску з ІЛМ: </strong> <?= $model->ilm_year ?> </p>
+                    <p><strong>Програма ІЛУ: </strong> <?= $model->ilm_program ?></p>
+                    <p><strong>Рік випуску з ІЛУ: </strong> <?= $model->ilm_year ?> </p>
 
 
 
