@@ -29,7 +29,7 @@ class ProgramsController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'create','view','edit', 'delete'],
+                        'actions' => ['logout', 'index', 'create','view','update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
