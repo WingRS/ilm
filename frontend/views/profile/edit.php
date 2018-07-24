@@ -31,7 +31,7 @@ $form = ActiveForm::begin([
 
     <ul class="flex-outer">
 
-        <h2>Реєстрaція:</h2>
+        <h2>Зміна інформації:</h2>
 
         <li>
             <label for="first-name">Ім'я</label>
