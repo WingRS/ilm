@@ -53,7 +53,7 @@ $form = ActiveForm::begin([
         </li>
         <img class="register-photo" id="blah" src="http://placehold.it/180" alt="your image" />
         <li>
-            <label for="city">Місто</label>
+            <label for="city">Область</label>
             <?=   $form->field($model, 'city',['template' => '{input}']
             )->dropDownList($model->getCitites(),['prompt'=>"Виберіть область"])->label(false) ?>
 

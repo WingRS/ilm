@@ -20,7 +20,7 @@ $this->registerCssFile(Yii::getAlias("@web").'/css/search_res.css');
                     <p><strong>Посада: </strong> <?= $model->chair  ?> </p>
                     <p><strong>Компанія: </strong> <?= $model->company  ?> </p>
                     <p><strong>Про мене: </strong> <?= $model->bio  ?> </p>
-                    <p><strong>Місто: </strong> <?= $model->city ?> </p>
+                    <p><strong>Область: </strong> <?= $model->city ?> </p>
                     <p><strong>Телефон: </strong> <?= $model->phone ?> </p>
                     <p><strong>Програма ІЛУ: </strong> <?= $model->ilm_program ?></p>
                     <p><strong>Рік випуску з ІЛУ: </strong> <?= $model->ilm_year ?> </p>
